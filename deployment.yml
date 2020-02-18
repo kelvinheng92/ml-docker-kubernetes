@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-docker-kubernetes
+  labels:
+    app: ml-docker-kubernetes
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ml-docker-kubernetes
+  template:
+    metadata:
+      labels:
+        app: ml-docker-kubernetes
+    spec:
+      containers:
+      - name: auto
+        image: gcr.io/ml-docker-kubernetes/auto:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
